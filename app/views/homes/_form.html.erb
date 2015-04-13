@@ -1,0 +1,11 @@
+<%= form_for(@home) do |f| %>
+  <div class="field">
+  	<%= f.label :username%>
+  	<%= f.text_field :username%>
+  	<%= f.label :upload_file%>
+    <%= f.file_field :data %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
