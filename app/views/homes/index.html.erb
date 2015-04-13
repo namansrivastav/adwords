@@ -1,0 +1,23 @@
+Hello
+<center><table class="table">
+  
+    <tr>
+      <th>Name</th>
+      <th>Filename</th>
+  	  <th></th>
+    </tr>
+  
+
+  
+	<% @homes.each do |home| %>
+      <tr>
+        <td><%= home.username %></td>
+        <td><%= home.data_file_name %></td>
+        <td><%=link_to 'Show', home_path(home)%></td>
+      </tr>
+    <% end %>
+  
+</table>
+</center>
+
+<%= link_to 'Upload new file', new_home_path %>
