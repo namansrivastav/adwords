@@ -177,7 +177,7 @@ def search
 	val = params.require(:home).permit(:word)
 	@filedet = Filedet.first
 	#@filedet.search_record(@filedet.topadurl)
-	byebug
+	#byebug
 	#Filedet.search_record(@filedet)
 
 	#byebug
