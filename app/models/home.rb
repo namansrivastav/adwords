@@ -10,11 +10,11 @@ class Home < ActiveRecord::Base
 		end
 	end 
 
-	# def self.search_record(search)
-	# 	# search.size.times do |f|
-	# 		where("topadurl ILIKE ?", "%#{search}%")
-	# 	# end
-	# end 
+	def self.search_record(search)
+		# search.size.times do |f|
+			where("topadurl ILIKE ?", "%#{search}%")
+		# end
+	end 
 	has_attached_file :data
 	do_not_validate_attachment_file_type :data
 	# validate_attachment_file_name :data , matches: [/csv\Z/]
