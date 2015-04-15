@@ -7,10 +7,11 @@ class HomesController < ApplicationController
 
 	def index
 		@homes = Home.all
-		respond_to do |format|
-			format.html
-			format.csv{ send_data @homes.to_csv }
-		end
+		# respond_to do |format|
+		# 	format.html
+		# 	format.json {render json: @homes}
+		# 	format.csv{ send_data @homes.to_csv }
+		# end
 	end
 
 	def new 
