@@ -81,6 +81,7 @@ class HomesController < ApplicationController
 
 	def show
 		# @filedet = Filedet.find_by_home_id(params[:id])
+		#@filedet = Filedet.order(:getword).page.where(home_id: params[:id]).per(1)
 		@filedet = Filedet.where(home_id: params[:id])
 		# byebug
 		# url = "https://www.google.co.in/#q=hello"

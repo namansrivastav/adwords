@@ -1,72 +1,96 @@
-Content of file : <br>
+<div class = "container">
 
-<%#= @content%>
+	<div class="row">
+		<div class= "col-xs-2">&nbsp;</div>
+		<div class= "col-xs-6"><h2>File Details::</h2></div>
+		<div class= "col-xs-4"><%= link_to 'Upload new file', new_home_path %></div>
+	</div>
+	<br><br>
+	<div class ="row">
+		<div class = "col-xs-2">&nbsp;</div>
 
-<%#@cont.size.times do |c|%>
-<%#= @cont[c]%>
-<br>
-<%#end%>
-<% @filedet.each do|fl|%>
+		<div class = "col-xs-8">				
+			<%#= @content%>
+			<%#@cont.size.times do |c|%>
+			<%#= @cont[c]%>
+			<br>
+			<%#end%>
 
-<table table class="table table-striped table-responsive table-bordered">
-	<tr>
-		<th>No. AdWords in top</th>
-		<td><%=fl.topadurl.count%></td>
-	</tr>
-	<tr>
-		<th>AdWords in right</th>
-		<td><%=fl.rightadurl.count%></td>
-	</tr>
-	<tr>
-		<th>Total no. of AdWords</th>
-		<td><%= fl.topadurl.count + fl.rightadurl.count%></td>
-	</tr>
-	<tr><th>URLs of top Adwords</th>
-		<td>
-			<% fl.topadurl.size.times do |item|%>
-			 <%=fl.topadurl[item]%><br>
+			<% @filedet.each do|fl|%>
+			<table class="table table-striped table-responsive table-bordered">
+				<tr>
+					<th>Keyword:</th>
+					<td><%=fl.getword%></td>
+				</tr>
+				<tr>
+					<th>No. AdWords in top</th>
+					<td><%=fl.topadurl.count%></td>
+				</tr>
+				<tr>
+					<th>AdWords in right</th>
+					<td><%=fl.rightadurl.count%></td>
+				</tr>
+				<tr>
+					<th>Total no. of AdWords</th>
+					<td><%= fl.topadurl.count + fl.rightadurl.count%></td>
+				</tr>
+				<tr><th>URLs of top Adwords</th>
+					<td>
+						<% fl.topadurl.size.times do |item|%>
+						<%=fl.topadurl[item]%><br>
+						<%end%>
+					</td>
+				</tr>
+				<tr><th>URLs of right Adwords</th>
+					<td>
+						<% fl.rightadurl.size.times do |item|%>
+						<%=fl.rightadurl[item]%><br>
+						<%end%>
+					</td>
+				</tr>
+				<tr>
+					<th>No. of non Adwords</th>
+					<td><%=fl.normalurl.count%></td>
+				</tr>
+				<tr>
+					<th>URL of non-AdWords in top</th>
+					<td><% fl.normalurl.size.times do |item|%>
+						<%=fl.normalurl[item]%><br>
+						<%end%>
+					</td>
+				</tr>
+				<tr>
+					<th>Total no. of link</th>
+					<td><%= fl.topadurl.count + fl.rightadurl.count + fl.normalurl.count%></td>
+				</tr>
+				<tr>
+					<th>Total no. of search</th>
+					<td><%=fl.totalsearch%></td>
+				</tr>
+				<tr><th>AdWords in right</th><td></td></tr>
+			</tr>
+		</table>
+
+		<%= form_for :home, url:homes_search_path  do|f|%>
+		<%= f.label :Enter_word_to_search_in_adURLs_that_contain_the_word%>
+		<div class="form-group">
+			<div class="col-xs-6">
+			<%= f.text_field :word , class: "form-control"%><br>
+		</div>
+			<%#= f.text_field :body %>
+			<div class="col-xs-5">
+			<%= f.submit "Search" , class: "btn btn-default"%>
+		</div>
+			<br><br><br><br>
+
 			<%end%>
-		</td>
-	</tr>
-	<tr><th>URLs of right Adwords</th>
-		<td>
-			<% fl.rightadurl.size.times do |item|%>
-			 <%=fl.rightadurl[item]%><br>
-			<%end%>
-		</td>
-	</tr>
-	<tr>
-		<th>No. of non Adwords</th>
-		<td><%=fl.normalurl.count%></td>
-	</tr>
-	<tr>
-		<th>URL of non-AdWords in top</th>
-		<td><% fl.normalurl.size.times do |item|%>
-			 <%=fl.normalurl[item]%><br>
-			<%end%>
-		</td>
-	</tr>
-	<tr>
-		<th>Total no. of link</th>
-		<td><%= fl.topadurl.count + fl.rightadurl.count + fl.normalurl.count%></td>
-	</tr>
-	<tr>
-		<th>Total no. of search</th>
-		<td><%=fl.totalsearch%></td>
-	</tr>
-	<tr><th>AdWords in right</th><td></td></tr>
-</tr>
-</table>
+		</div>
+		<%#val = @doc.at_css("._mB")%>
+		<%#=val.text%>
 
-<%= form_for :home , url: homes_search_path do|f|%>
-<%= f.label :Enter_word_to_search_in_adURLs_that_contain_the_word%>
-<%= f.text_field :word%>
-<%#= f.text_field :body %>
-<%= f.submit%>
-<br><br><br><br>
-
-<%end%>
-<%#val = @doc.at_css("._mB")%>
-<%#=val.text%>
-
-<%end%>
+		<%end%>
+		<%#= paginate(@filedet)%>
+		<div class = "col-xs-2">&nbsp;</div>
+	</div>
+</div>
+</div>

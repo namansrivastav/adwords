@@ -1,11 +1,27 @@
+
+
+<div class="form-group">
+        
 <%= form_for(@home) do |f| %>
-  <div class="field">
-  	<%= f.label :username%>
-  	<%= f.text_field :username%>
+<div class="col-xs-3">
+	<%= f.label :username%>
+  </div>
+  <div class="col-xs-9">
+  	
+  	<%= f.text_field :username ,class: "form-control" %>
+  </div>
+  <br><br>
+  	<div class="col-xs-3">
   	<%= f.label :upload_file%>
+  </div>
+  <div class="col-xs-9">
     <%= f.file_field :data %>
   </div>
+  <div class="col-xs-12">
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Done" ,class: "btn btn-default" %>
   </div>
+  <br><br>
+</div>
 <% end %>
+</div>

@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   # resources :sessions, only: [:create, :destroy]
   #resource :home, only: [:show]
 
-  #post 'homes/search'
+  post 'homes/search'
   #root to: "homes#new"
   
   # end

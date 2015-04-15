@@ -88,6 +88,12 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.2)
     jwt (1.4.1)
+    kaminari (0.16.3)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
+    kaminari-bootstrap (3.0.1)
+      kaminari (>= 0.13.0)
+      rails
     loofah (2.0.1)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -207,6 +213,8 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   json
+  kaminari
+  kaminari-bootstrap
   omniauth (~> 1.2.2)
   omniauth-google-oauth2
   paperclip (~> 4.1)

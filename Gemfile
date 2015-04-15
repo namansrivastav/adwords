@@ -8,6 +8,8 @@ gem 'rails', '4.2.0'
 
 gem 'omniauth', '~> 1.2.2'
 gem 'omniauth-google-oauth2'
+gem 'kaminari'
+gem 'kaminari-bootstrap'
 
 gem 'json'
 gem 'pg'
