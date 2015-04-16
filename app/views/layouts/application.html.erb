@@ -11,17 +11,12 @@
   <p class="alert"><%= alert %></p>
 
   <div>
-    <% if current_user %>
-    Signed in as <strong><%= current_user.email %></strong>!<br>
-    <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
-    <%#= link_to "Sign out", signout_path, id: "sign_out" %>
-    <%# else %>
-    <%#= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %>
-    <%#= link_to "Create an account", "/auth/identity/register" %>
-    <%#= link_to "login", "/auth/identity" %>
-    <%#= link_to "Sign up", new_user_registration_path %>  <%#= link_to "sign in", new_user_session_path %>
+    <div id="user_nav">
+    <% if user_signed_in? %>
+      <%= render "layouts/menu" %>
     <% end %>
   </div>
+        
   <%= yield %>
 
 </body>

@@ -24,29 +24,25 @@ ActiveRecord::Schema.define(version: 20150414124812) do
     t.text     "pagedetail"
     t.string   "getword"
     t.integer  "home_id"
+    t.integer  "user_id"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
 
   add_index "filedets", ["home_id"], name: "index_filedets_on_home_id", using: :btree
+  add_index "filedets", ["user_id"], name: "index_filedets_on_user_id", using: :btree
 
   create_table "homes", force: :cascade do |t|
-    t.string   "username"
     t.string   "data_file_name"
     t.string   "data_content_type"
     t.integer  "data_file_size"
     t.datetime "data_updated_at"
+    t.integer  "user_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
   end
 
-  create_table "identities", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
+  add_index "homes", ["user_id"], name: "index_homes_on_user_id", using: :btree
 
   create_table "oauth_access_grants", force: :cascade do |t|
     t.integer  "resource_owner_id", null: false

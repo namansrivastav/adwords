@@ -1,7 +1,6 @@
 module Api
 	module V1
 		class Api::V1::HomesController< ApplicationController
-			#doorkeeper_for :all
 			before_action :doorkeeper_authorize!
 
 			respond_to :json
@@ -18,8 +17,8 @@ module Api
 				if @home.save
 
 			 	#Importing data from csv file
-				csv_text = File.read(@home.data.path)
-				csv = CSV.parse(csv_text, :headers => true)
+			 	csv_text = File.read(@home.data.path)
+			 	csv = CSV.parse(csv_text, :headers => true)
 				#byebug
 				csv.each do |row|
 
@@ -58,23 +57,29 @@ module Api
 					#page detail
 					#@filedet.pagedetail = PGconn.escape_bytea(@doc.to_s)
 					@filedet.save
-					respond_with @filedet
 
+					end
+					#redirect_to action: 'index',notice: "File has been uploaded"
+				#else
+				#	redirect_to action: 'new', notice: "File uploading fail"
 				end
-					redirect_to action: 'index',notice: "File has been uploaded"
-				else
-					redirect_to action: 'new', notice: "File uploading fail"
-				end
+				respond_with @home
+
 			end
 
 			def show
-				respond_with Filedet.where(home_id: params[:id])
-			end
-
-			def search
-				val = params.require(:home).permit(:word)
-				@filedet = Filedet.first
-				byebug
+				@id = params[:id]
+				if !params[:home].nil?
+					if !params[:home][:findword].nil?
+						@filedet = Filedet.where("'%#{params[:home][:findword]}%' ~~*^ ANY (topadurl) OR '%#{params[:home][:findword]}%' ~~*^ ANY (rightadurl) AND home_id= @id")
+					end
+					if !params[:home][:findurl].nil?
+						@filedet = Filedet.where("'%#{params[:home][:findurl]}%' ~~*^ ANY (normalurl) AND home_id= @id")
+					end
+				else
+					@filedet = Filedet.where(home_id: params[:id])				
+				end
+				respond_with @filedet
 			end
 
 			private 

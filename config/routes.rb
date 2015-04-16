@@ -1,8 +1,3 @@
-# Rails.application.routes.draw do
-  #use_doorkeeper
-  #use_doorkeeper
-  #devise_for :users
-#get 'home/show'
 require 'api_constraints'
 
 Rails.application.routes.draw do
@@ -10,30 +5,15 @@ Rails.application.routes.draw do
   devise_for :users
 
   namespace :api, defaults: {format: 'json'} do
-    scope module: :v1, constraints: ApiConstraints.new(version: 1 , default: true) do
-    #scope module: :v1, constraints: ApiConstraints.new(version: 1) do  
-      resources :homes
+    scope module: :v1, constraints: ApiConstraints.new(version: 1 , default: true) do      resources :homes
     end
   end
 
   devise_scope :user do
    root 'devise/sessions#new'  
   end
-  #get 'home/show'
   resources :homes
-  #root 'homes#index'
-  #root to: 'sessions#new'
-  # resources :sessions, only: :index
-  # post "/auth/:provider/callback" => 'sessions#create'
-  # get 'auth/failure', to: redirect('/')
-  # get 'signout', to: 'sessions#destroy', as: 'signout'
-
-  # resources :sessions, only: [:create, :destroy]
-  #resource :home, only: [:show]
-
-  post 'homes/search'
-  #root to: "homes#new"
-  
+    
   # end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
