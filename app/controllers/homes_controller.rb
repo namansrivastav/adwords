@@ -7,7 +7,7 @@ class HomesController < ApplicationController
 	before_filter :authenticate_user!
 
 	def index
-		@homes = Home.all
+		@homes = Home.page(params[:page]).per(10)
 	end
 
 	def new 
@@ -72,10 +72,10 @@ class HomesController < ApplicationController
 		@id = params[:id]
 		if !params[:home].nil?
 			if !params[:home][:findword].nil?
-			@filedet = Filedet.where("'%#{params[:home][:findword]}%' ~~*^ ANY (topadurl) OR '%#{params[:home][:findword]}%' ~~*^ ANY (rightadurl) AND home_id= @id")
+			@filedet = Filedet.where("('%#{params[:home][:findword]}%' ~~*^ ANY (topadurl) OR '%#{params[:home][:findword]}%' ~~*^ ANY (rightadurl)) AND (home_id= '#{@id}')")
 			end
 			if !params[:home][:findurl].nil?
-			@filedet = Filedet.where("'%#{params[:home][:findurl]}%' ~~*^ ANY (normalurl) AND home_id= @id")
+			@filedet = Filedet.where("'%#{params[:home][:findurl]}%' ~~*^ ANY (normalurl) AND home_id='#{@id}'")
 			end
 		else
 		 	@filedet = Filedet.where(home_id: params[:id])
