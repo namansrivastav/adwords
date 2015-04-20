@@ -1,9 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  filename: MyString
-  content_type: MyString
+  data_file_name: MyString1
+  data_content_type: MyString1
+  data_file_size: 23
 
 two:
-  filename: MyString
-  content_type: MyString
+  data_file_name: MyString2
+  data_content_type: MyString2
+  data_file_size: 24

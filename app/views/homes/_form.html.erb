@@ -4,10 +4,10 @@
         
 <%= form_for(@home) do |f| %>
   	<div class="col-xs-3">
-  	<%= f.label :upload_file%>
+  	<%= f.label :upload_csv_file_only%>
   </div>
   <div class="col-xs-9">
-    <%= f.file_field :data %>
+    <%= f.file_field :data , :accept => 'text/csv'%>
   </div>
   <div class="col-xs-12">
   <div class="actions">

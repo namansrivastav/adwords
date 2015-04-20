@@ -24,6 +24,10 @@ gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 
 gem 'devise' , '~> 3.4.1'
+
+gem 'minitest'
+gem 'minitest-reporters', '1.0.2'           
+gem 'minitest-spec-rails'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 

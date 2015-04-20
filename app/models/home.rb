@@ -12,8 +12,16 @@ class Home < ActiveRecord::Base
 	end 
 
 	has_attached_file :data
-	do_not_validate_attachment_file_type :data
-	# validate_attachment_file_name :data , matches: [/csv\Z/]
+
+	#mount_uploader :data
+	# validates_presence_of :data
+	validates_attachment :data, :presence => true,
+  	:content_type => { :content_type => "text/csv" }
+
+	#do_not_validate_attachment_file_type :data
+	#validate_attachment_file_name :data , matches: [*\.(csv)]
+	# validate_attachment_file_name :data, accept: 'text/csv'
+  	#validates_attachment_content_type :data, :content_type => /\A*\/.csv\Z/ , :message => "Invalid file"
 # 	def initialize(params = {})
 # 		file = params.delete(:file)
 # 		super
